@@ -32,3 +32,22 @@
     >>> from django.utils import timezone
     >>> q = Question(question_text='당신이 접종받은 백신은 무엇인가요?', pub_date=timezone.now())
     >>> q.save()
+* Question 데이터 조회
+    python manage.py shell
+    >>> from poll.models import Question
+    >>> from django.utils import timezone
+    전체
+    >>> Question.objects.all()
+    한개
+    >>> Question.objects.get(id=1)
+* Choice 데이터 추가
+    >>> from poll.models import Question, Choice
+    >>> from django.utils import timezone
+    >>> q = Question.objects.get(id=1)
+    >>> c = Choice(choice_text='화이자', votes=0, question=q)
+    >>> c.save()
+    ...
+    >>> q.choice_set.all()
+
+* 관리자 아이디, 비밀번호 생성
+    python manage.py createsuperuser
