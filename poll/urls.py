@@ -6,7 +6,6 @@ app_name = 'poll'
 
 urlpatterns = [
     path('', views.index, name='index'),              # 127.0.0.1:8000/poll/
-    # path('cart/', views.cart),          # 127.0.0.1:8000/poll/cart
     path('<int:pk>/', views.detail, name='detail'),   # 127.0.0.1:8000/poll/1/
-    path('<int:pk>/vote/', views.vote, name='vote')   # 127.0.0.1:8000/poll/1/vote
+    path('<int:pk>/vote/', views.vote, name='vote')   # 127.0.0.1:8000/poll/1/vote/
 ]

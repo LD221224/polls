@@ -1,0 +1,14 @@
+#container{width: 1000px; margin: 30px auto;}
+
+/* index style */
+section ul li{margin: 15px;}
+section ul li a{text-decoration: none; color: #000;}
+section ul li a:hover{text-decoration: underline;}
+
+/* detail style */
+section form{width: 500px; margin: 30px 20px;}
+section input[type='submit']{padding: 10px 15px;}
+section form .error{color: #f00;}
+
+/* result style */
+section button{padding: 10px 15px;}

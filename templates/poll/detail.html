@@ -1,11 +1,9 @@
-<!DOCTYPE html>
+{% load static %}
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
     <title>설문 항목</title>
-    <style>
-        form{width: 500px; margin: 30px 20px;}
-    </style>
+    <link rel="stylesheet" href="{% static 'poll/style.css' %}">
 </head>
 <body>
 <!--
@@ -16,18 +14,25 @@
         {% endfor %}
     </ul>
 -->
-    <form action="" method="post">
-        {% csrf_token %}    <!-- 필수 입력 사항 -->
-        <fieldset>
-            <legend>{{ question.question_text }}</legend>
-            {% for choice in question.choice_set.all %}
-            <p>
-                <input type="radio" name="choice">
-                <label>{{ choice.choice_text }}</label>
-            </p>
-            {% endfor %}
-        </fieldset>
-        <p><input type="submit" value="투표"></p>
-    </form>
+    <div id="container">
+        <section>
+            <form action="{% url 'poll:vote' question.id %}" method="post">
+                {% csrf_token %}    <!-- 필수 입력 사항 -->
+                <fieldset>
+                    <legend>{{ question.question_text }}</legend>
+                   {% if error %}
+                        <p class="error">{{ error }}</p>
+                    {% endif%}
+                    {% for choice in question.choice_set.all %}
+                    <p>
+                        <input type="radio" name="choice" value="{{ choice.id }}">
+                        <label>{{ choice.choice_text }}</label>
+                    </p>
+                    {% endfor %}
+                </fieldset>
+                <p><input type="submit" value="투표"></p>
+            </form>
+        </section>
+    </div>
 </body>
 </html>
